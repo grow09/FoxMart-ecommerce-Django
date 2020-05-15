@@ -9,10 +9,10 @@
     <div class="filters">
    <div class="form-group">
   <label for="sel1">Manufacturer:</label>
-  <select class="form-control" id="sel1">
+  <select class="form-control" name="maker" id="sel1">
       <option>All</option>
       {% for makers in Makers%}
-    <option>{{ makers }}</option>
+    <option name="maker" value="{{ makers }}">{{ makers }}</option>
       {% endfor %}
   </select>
        <hr>

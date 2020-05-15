@@ -10,11 +10,11 @@ from django.db.models import Avg, Count, Max, Min
 def index(request):
     contributor = Contributor.objects.all()
     products = Products.objects.all()
-    category = CategoryModel.objects.all()
+    all_category = CategoryModel.objects.all()
     context = {
         'Contributor': contributor,
         'Products': products,
-        'Categories': category
+        'All_categories': all_category
     }
     return render(request, "index.html", context)
 
@@ -22,6 +22,7 @@ def index(request):
 def prod_card(request, category_slug):
     contributor = Contributor.objects.all()
     products = Products.objects.all()
+    all_category = CategoryModel.objects.all()
     category = CategoryModel.objects.filter(slug=category_slug)
     cat = (str(request).split('/')[2].split("'")[0])
     makers = Contributor.objects.filter(category__slug=category_slug).values_list('maker', flat=True).distinct()
@@ -39,6 +40,7 @@ def prod_card(request, category_slug):
         'Videocard': videocard,
         'Cpu_serial': cpu_serial,
         'Diagonal': diagonal,
+        'All_categories': all_category
     }
     return render(request, "prod-card.html", context)
 
@@ -47,10 +49,12 @@ def product_page(request, product_slug):
     contributor = Contributor.objects.filter(model=product_slug)
     products = Products.objects.all()
     category = CategoryModel.objects.all()
+    all_category = CategoryModel.objects.all()
     context = {
         'Contributor': contributor,
         'Products': products,
         'Categories': category,
+        'All_categories': all_category
     }
     return render(request, "product_page.html", context)
 
@@ -64,23 +68,31 @@ def filtered(request):
     diagonal = Products.objects.filter(category__pk=cat).values_list('diagonal', flat=True).distinct()
     ram = Products.objects.filter(category__pk=cat).values_list('ram', flat=True).distinct()
     cpu_serial = Products.objects.filter(category__pk=cat).values_list('cpu_serial', flat=True).distinct()
+    all_category = CategoryModel.objects.all()
+    # maker
+    if request.GET.getlist("maker") == ['All']:
+        maker = Products.objects.all().values_list('model', flat=True).distinct()
+    elif request.GET.getlist("maker"):
+        maker = Contributor.objects.filter(maker=request.GET.get('maker'))
+    else:
+        maker = Products.objects.all().values_list('model', flat=True).distinct()
     # checkbox ram
-    if request.GET.getlist("ram") != []:
+    if request.GET.getlist("ram"):
         ram1 = request.GET.getlist('ram')
     else:
         ram1 = ram
     # checkbox cpu
-    if request.GET.getlist("cpu") != []:
+    if request.GET.getlist("cpu"):
         cpu_serial1 = request.GET.getlist('cpu')
     else:
         cpu_serial1 = cpu_serial
     # checkbox videocard
-    if request.GET.getlist("videocard") != []:
+    if request.GET.getlist("videocard"):
         videocard1 = request.GET.getlist('videocard')
     else:
         videocard1 = videocard
     # checkbox diagonal
-    if request.GET.getlist("diagonal") != []:
+    if request.GET.getlist("diagonal"):
         diagonal1 = request.GET.getlist('diagonal')
     else:
         diagonal1 = diagonal
@@ -89,12 +101,11 @@ def filtered(request):
         Q(ram__in=ram1),
         Q(cpu_serial__in=cpu_serial1),
         Q(videocard__in=videocard1),
-        Q(diagonal__in=diagonal1)
+        Q(diagonal__in=diagonal1),
+        Q(model__in=maker),
     )
-    print(ram1)
-    print(cpu_serial1)
-    print(diagonal1)
-    print(Products.objects.filter(ram__in=[3]))
+    print(maker)
+    print(makers)
     context = {
         'Contributor': contributor,
         'Products': product,
@@ -105,30 +116,8 @@ def filtered(request):
         'Videocard': videocard,
         'Cpu_serial': cpu_serial,
         'Diagonal': diagonal,
+        'All_categories': all_category
     }
     return render(request, "prod-card.html", context)
-
-    # contributor = Contributor.objects.all()
-    # products = Products.objects.filter(
-    #     Q(ram__in=request.GET.getlist("ram")) | Q(cpu_serial__in=request.GET.getlist("cpu"))
-    # )
-    # category = CategoryModel.objects.filter(slug=cat)
-    # cat = (str(request).split('/')[2].split("'")[0]).split('?')[0]
-    # makers = Contributor.objects.filter(category__slug=cat).values_list('maker', flat=True).distinct()
-    # videocard = Products.objects.filter(category__slug=cat).values_list('videocard', flat=True).distinct()
-    # ram = Products.objects.filter(category__slug=cat).values_list('ram', flat=True).distinct()
-    # cpu_serial = Products.objects.filter(category__slug=cat).values_list('cpu_serial', flat=True).distinct()
-    # print('asf')
-    # print(cpu_serial)
-    # context = {
-    #     'Contributor': contributor,
-    #     'Products': products,
-    #     'Categories': category,
-    #     'cat': cat,
-    #     'Makers': makers,
-    #     'Ram': ram,
-    #     'Videocard': videocard,
-    #     'Cpu_serial': cpu_serial,
-    # }
 
 

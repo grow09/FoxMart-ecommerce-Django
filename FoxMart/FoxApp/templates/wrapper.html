@@ -29,8 +29,8 @@
           Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {% for category in Categories %}
-          <a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+            {% for all_category in All_categories %}
+          <a class="dropdown-item" href="{{ all_category.get_absolute_url }}">{{ all_category.name }}</a>
             <div class="dropdown-divider"></div>
             {% endfor %}
         </div>
