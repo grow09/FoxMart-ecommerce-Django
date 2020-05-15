@@ -1,0 +1,93 @@
+.price_in{
+    
+    float: right;
+    width: 70rem;
+
+
+/*
+    box-sizing:  border-box;
+    box-shadow: 0 20px 40px rgba(0,0,0,.2); 
+*/
+}
+.price_inf{
+    width: 60rem;
+    height: 225px;
+/*
+    box-sizing:  border-box;
+    box-shadow: 0 20px 40px rgba(0,0,0,.2); 
+*/
+}
+.warranty_inf{
+    margin-top: 25px;
+    height: 160px;
+/*
+    box-sizing:  border-box;
+    box-shadow: 0 20px 40px rgba(0,0,0,.2); 
+*/
+}
+deliver_inf{
+    margin-top: 150px;
+    height: 160px;
+/*
+    box-sizing:  border-box;
+    box-shadow: 0 20px 40px rgba(0,0,0,.2);
+*/
+}
+.div1{
+    display:inline-block;
+}
+.chart_inline{
+
+    width: 35rem;
+    margin-top: 5rem;
+}
+.nayavnist{
+    color: #228B22;
+}
+.specifications{
+    margin-top: 25rem;
+    margin: 15px;
+    display: flex;
+    width: 98%;
+}
+
+.specifications .div1{
+    margin: 15px;
+}
+.specifications button{
+    width: 50%;
+    background: rgba(0,0,0,.0); /* Цвет фона */
+    color: black;
+    border: 0px; /* Параметры рамки */
+}
+.specifications button:hover{
+    width: 50%;
+    background: rgba(0,0,0,.1); /* Цвет фона */
+    color: black;
+    border: 0px; /* Параметры рамки */
+}
+
+.div2{
+  display: block;
+
+}
+.div3{
+  display: none;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

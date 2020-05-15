@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoxMart</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" >
+    <link rel="stylesheet" href="{% static 'fonts/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/prod.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product_page.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ <a class="navbar-brand" href="{% url 'index' %}"><i class="fab fa-firefox fa-2x"></i>Fo<i class="fab fa-xing"></i>Mart </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index' %}">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% for category in Categories %}
+          <a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+            <div class="dropdown-divider"></div>
+            {% endfor %}
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0 margin-right-25" type="submit">Search <span class="fas fa-search"></span></button>
+    </form>
+
+        <ul class="nav navbar-nav" >
+            <li><a href="#"><span class="fas fa-bookmark margin-right-25 " style="font-size: 30px"></span></a></li>
+            <li><a href="#"><span class="fas fa-shopping-cart margin-right-25" style="font-size: 30px"></span></a></li>
+            <li><a href="#"><span class="fas fa-user-alt margin-right-25" style="font-size: 30px" ></span></a></li>
+        </ul>
+  </div>
+</nav>
+{% block content %}
+
+{% endblock %}
+    <div class="footer">
+        <p> by: @gRow09 <br> Contact Information:</p>
+        <a href="https://www.instagram.com/your_homie09/"><button class="socbutton">
+            <span class="fab fa-instagram fa-2x"></span>
+            </button></a>
+        <a href="https://www.facebook.com/profile.php?id=100006172983195"><button class="socbutton">
+            <span class="fab fa-facebook fa-2x"></span>
+            </button></a>
+        <a href="https://www.t.me/grow09"><button class="socbutton">
+            <span class="fab fa-telegram-plane fa-2x"></span>
+            </button></a>
+        <a href="#"><button class="socbutton">
+            <span class="fab fa-twitter fa-2x"></span>
+            </button></a>
+            <br><br>
+    <p>© 2020 gRow09, all rights reserved. Made with <span class="far fa-heart"></span> for a better mark.</p>
+
+    </div>
+  <!-- Latest compiled and minified JavaScript -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" ></script>
+          <script src="{% static 'js/slider.js' %}"></script>
+          <script src="{% static 'js/chart.js' %}"></script>
+</body>
+</html>

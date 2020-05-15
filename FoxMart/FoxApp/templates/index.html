@@ -1,0 +1,43 @@
+{% extends "wrapper.html" %}
+
+{% block content %}
+    {% load static %}
+  <img src="{% static 'Resource/sozdanie-internet-magazina.png' %}" height="15%" width="35%" style="align-self: center;">
+    <div class="content" style="margin-top: 50px">
+
+        <div class="card-columns" style="margin-left: 10%;">
+            <div class="col-sm-10">
+                {% for category in Categories %}
+      <a href="{{ category.get_absolute_url }}">
+          <div class="card border-success  card-big">
+  <div class="card-header border-success">{{ category.name }}</div>
+  <div class="card-body text-success">
+    <img src="{{ category.img }}" class="card-img-top" style="margin-top: 5px;" alt="...">
+  </div>
+</div>
+          </a>
+                {% endfor %}
+          </div>
+<!--             <div class="col-sm-10">-->
+<!--      <a href="prod-card.html">-->
+<!--          <div class="card border-success  card-big">-->
+<!--  <div class="card-header border-success">PCs</div>-->
+<!--  <div class="card-body text-success">-->
+<!--    <img src="{% static 'Resource/sysblock.jpg' %}" class="card-img-top" style="margin-top: 5px;" alt="...">-->
+<!--  </div>-->
+<!--</div>-->
+<!--          </a>   -->
+<!--          </div>-->
+<!--             <div class="col-sm-10">-->
+<!--      <a href="prod-card.html">-->
+<!--          <div class="card border-success  card-big">-->
+<!--  <div class="card-header border-success">Smartphones</div>-->
+<!--  <div class="card-body text-success">-->
+<!--    <img src="{% static 'Resource/smartphone.jpg' %}" class="card-img-top" style="margin-top: 5px;" alt="...">-->
+<!--  </div>-->
+<!--</div>-->
+          </div>
+            </div>
+{% endblock %}
+    
+

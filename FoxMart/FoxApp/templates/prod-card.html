@@ -1,0 +1,144 @@
+{% extends "wrapper.html" %}
+
+{% block content %}
+    {% load static %}
+    <div class="content" style="margin-top: 20px;">
+        {% for category in Categories %}
+            <h1 class="center_text">{{ category }}<hr></h1>
+<form action="{% url 'filtered' %}" method="get" name="filter">
+    <div class="filters">
+   <div class="form-group">
+  <label for="sel1">Manufacturer:</label>
+  <select class="form-control" id="sel1">
+      <option>All</option>
+      {% for makers in Makers%}
+    <option>{{ makers }}</option>
+      {% endfor %}
+  </select>
+       <hr>
+       <div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" style="color: black;">Processor:</a>
+      </h4>
+    </div>
+       {% for cpu_serial in Cpu_serial %}
+    <div id="collapse1" class="panel-collapse collapse in">
+      <ul class="list-group">
+        <div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" name="cpu" value="{{ cpu_serial }}">{{ cpu_serial }}
+  </label>
+</div>
+      </ul>
+    </div>
+      {% endfor %}
+  </div>
+
+<div>
+       <hr>
+           <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"style="color: black;">Ram:</a>
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse in">
+        {% for ram in Ram %}
+      <ul class="list-group">
+        <div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" name="ram" value="{{ ram }}">{{ ram }}
+  </label>
+</div>
+        </ul>
+    {% endfor %}
+    </div>
+  </div>
+       </div>
+           {% if category.pk != 3  %}
+           <hr>
+           <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"style="color: black;">Videocard:</a>
+      </h4>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse in">
+        {% for videocard in Videocard%}
+      <ul class="list-group">
+        <div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" name="videocard" value="{{ videocard }}">{{ videocard }}
+  </label>
+</div>
+        </ul>
+    {% endfor %}
+    </div>
+  </div>
+           {% else %}
+           <hr>
+           <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"style="color: black;">Diagonal:</a>
+      </h4>
+    </div>
+                <div id="collapse3" class="panel-collapse collapse in">
+                    {% for diagonal in Diagonal %}
+      <ul class="list-group">
+        <div class="form-check">
+  <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" name="diagonal" value="{{ diagonal }}"><p>{{ diagonal }}</p>
+  </label>
+</div>
+        </ul>
+       {% endfor %}
+    </div>
+  </div>
+{% endif %}
+<input type="hidden" name="category" value="{{ category.pk }}">
+           <hr>
+<button type="submit" class="btn btn-success">Search <span class="fas fa-search"></button>
+       </div>
+       </div>
+        </div>
+{% endfor %}
+  </form>
+{% block products %}
+    <div class="catalogue">
+        {% for products in Products %}
+        {% for category in Categories %}
+        {% if products.category.slug  == category.slug %}
+    <div class="product" style="margin-right: 30px;">
+        {% for contributor in Contributor %}
+        {% if contributor.pk == products.pk %}
+        <div class="imgbox">
+        <img src="{{ contributor.img1 }}">
+        </div>
+        <div class="specifice">
+        <h2>{{ contributor.maker }}<br><span>{{ products.model }}</span></h2>
+        <div class="price">From {{ products.minimal }}UAH<br>To {{ products.maximal }}UAH</div>
+         <hr>
+        <label>CPU: <p>{{ products.cpu }}</p></label>
+        <label>RAM: <p>{{ products.ram }} GB</p></label>
+        {% if products.videocard != "0"  %}
+        <label>Videocard: <p>{{ products.videocard }}</p></label>
+        {% else %}
+        <label>Diagonal: <p>{{ products.diagonal }} Inch</p></label>
+        {% endif %}
+        <a href="{{ products.get_absolute_url }}">Buy it now</a>
+        </div>
+    </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+    </div>
+    </div>
+{% endblock %}
+<br><br><br>
+{% endblock %}
+
