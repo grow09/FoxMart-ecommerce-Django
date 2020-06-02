@@ -67,6 +67,7 @@ class Products(models.Model):
     def get_absolute_url(self):
         return reverse('products', kwargs={'product_slug': self.model})
 
+
     def minimal(self):
         prices = [self.price_itbox, self.price_rozetka, self.price_citrus, self.price_allo, self.price_stylus]
         prices = [x for x in prices if x != 0]

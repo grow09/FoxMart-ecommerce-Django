@@ -28,9 +28,7 @@
               <a class="prev" onclick="minusSlide()">&#10094;</a>
               <a class="next" onclick="plusSlide()">&#10095;</a>
           </div>
-          
           <br>
-          
           <!-- The dots/circles -->
           <div style="text-align:center">
             <span class="dot" onclick="currentSlide(1)"></span>
@@ -45,7 +43,6 @@
 <!--    <div><h1>Price from: {{ products.minimal }} Uah</h1></div>-->
     <div><h3 class="fa fa-check nayavnist">Available</h3></div>
     </div>
-
     <div class="div1">
             <a href="#"><button title="Додати в обрані" class="btn btn-success">
             <span class="fas fa-bookmark fa-2x"></span>
@@ -54,8 +51,6 @@
             <span class="fas fa-shopping-cart fa-2x"></span>
             </button></a>
             </div>
-         
-      
               <div class="deliver_inf">
                   <br>
               <p>Delivery of goods is carried out by "New Mail" within 1-2 days.<br>
@@ -93,27 +88,27 @@
               <tbody>
                 <tr>
                   <td><img src="https://seeklogo.com/images/I/itbox-logo-F3D2D6730E-seeklogo.com.png" style="width: 120px;"></td>
-                  <td>{{contributor.model}}</td>
+                  <td>{{contributor.maker}} {{contributor.model}}</td>
                   <td><span id="itbox">{{products.price_itbox}}</span> грн <a href="{{ contributor.link_itbox }}"><button class="btn btn-success">Купити</button></a></td>
                 </tr>
                 <tr>
                   <td><img src="https://upload.wikimedia.org/wikipedia/commons/b/be/ROZETKA-Logo-L3-B-RGB.png" style="width: 200px;"></td>
-                  <td>{{contributor.model}}</td>
+                  <td>{{contributor.maker}} {{contributor.model}}</td>
                   <td><span id="rozetka">{{products.price_rozetka}}</span> грн <a href="{{ contributor.link_rozetka }}"><button class="btn btn-success">Купити</button></a></td>
                 </tr>
                 <tr>
                   <td><img src="https://i.citrus.ua/pictures/all/svg/citrus_brand_new_logo.svg" style="width: 200px;"></td>
-                  <td>{{contributor.model}}</td>
+                  <td>{{contributor.maker}} {{contributor.model}}</td>
                   <td><span id="citrus">{{products.price_citrus}}</span> грн <a href="{{ contributor.link_citrus }}"><button class="btn btn-success">Купити</button></a></td>
                 </tr>
                 <tr>
                   <td><img src="https://becover.com.ua/upload/iblock/b3a/b3ab547b7eb5aa952e3841ff5547c7fe.jpg" style="width: 150px;"></td>
-                  <td>{{contributor.model}}</td>
+                  <td>{{contributor.maker}} {{contributor.model}}</td>
                   <td><span id="allo">{{products.price_allo}}</span> грн <a href="{{ contributor.link_allo }}"><button class="btn btn-success">Купити</button></a></td>
                 </tr>
                 <tr>
                   <td><img src="https://stylus.ua/images/header_logo.png" style="width: 200px;"></td>
-                  <td>{{contributor.model}}</td>
+                  <td>{{contributor.maker}} {{contributor.model}}</td>
                   <td><span id="stylus">{{products.price_stylus}}</span> грн <a href="{{ contributor.link_stylus }}"><button class="btn btn-success">Купити</button></a></td>
                 </tr>
               </tbody>

@@ -104,8 +104,6 @@ def filtered(request):
         Q(diagonal__in=diagonal1),
         Q(model__in=maker),
     )
-    print(maker)
-    print(makers)
     context = {
         'Contributor': contributor,
         'Products': product,
@@ -119,5 +117,17 @@ def filtered(request):
         'All_categories': all_category
     }
     return render(request, "prod-card.html", context)
+
+def search(request):
+    contributor = Contributor.objects.filter(model__icontains=request.GET.get("search"))
+    cat = request.GET.get("search")
+    products = Products.objects.all()
+    print(contributor)
+    context = {
+        'Products': products,
+        'Contributor': contributor,
+        'Cat': cat,
+    }
+    return render(request, "search.html", context)
 
 

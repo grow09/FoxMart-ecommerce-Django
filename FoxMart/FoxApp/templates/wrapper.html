@@ -36,8 +36,8 @@
         </div>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="get">
+      <input class="form-control mr-sm-2" type="search" placeholder="search" name="search" aria-label="search">
       <button class="btn btn-outline-success my-2 my-sm-0 margin-right-25" type="submit">Search <span class="fas fa-search"></span></button>
     </form>
 
