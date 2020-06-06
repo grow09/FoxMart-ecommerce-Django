@@ -60,6 +60,11 @@ class Products(models.Model):
     price_citrus = models.IntegerField(blank=True)
     price_allo = models.IntegerField(blank=True)
     price_stylus = models.IntegerField(blank=True)
+    itbox_com_count = models.IntegerField(blank=True)
+    rozetka_com_count = models.IntegerField(blank=True)
+    citrus_com_count = models.IntegerField(blank=True)
+    allo_com_count = models.IntegerField(blank=True)
+    stylus_com_count = models.IntegerField(blank=True)
 
     def __int__(self):
         return self.model
