@@ -41,8 +41,9 @@
           <div class="price_inf">
               <div class="div1">
 <!--    <div><h1>Price from: {{ products.minimal }} Uah</h1></div>-->
-    <div><h3 class="fa fa-check nayavnist">Available</h3></div>
+    <div><h3 class="fa">Best market price: {{products.best_price}} UAH</h3></div>
     </div>
+              <hr>
     <div class="div1">
             <a href="#"><button title="Додати в обрані" class="btn btn-success">
             <span class="fas fa-bookmark fa-2x"></span>
@@ -82,33 +83,39 @@
                 <tr>
                   <th scope="col">Seller:</th>
                   <th scope="col">Model:</th>
-                  <th scope="col">Price:</th>
+                  <th scope="col">Count of reviews:</th>
+                    <th scope="col">Price:</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><img src="https://seeklogo.com/images/I/itbox-logo-F3D2D6730E-seeklogo.com.png" style="width: 120px;"></td>
                   <td>{{contributor.maker}} {{contributor.model}}</td>
+                    <td>{{products.itbox_com_count}}</td>
                   <td><span id="itbox">{{products.price_itbox}}</span> грн <a href="{{ contributor.link_itbox }}"><button class="btn btn-success">Купити</button></a></td>
                 </tr>
                 <tr>
                   <td><img src="https://upload.wikimedia.org/wikipedia/commons/b/be/ROZETKA-Logo-L3-B-RGB.png" style="width: 200px;"></td>
                   <td>{{contributor.maker}} {{contributor.model}}</td>
+                    <td>{{products.rozetka_com_count}}</td>
                   <td><span id="rozetka">{{products.price_rozetka}}</span> грн <a href="{{ contributor.link_rozetka }}"><button class="btn btn-success">Купити</button></a></td>
                 </tr>
                 <tr>
                   <td><img src="https://i.citrus.ua/pictures/all/svg/citrus_brand_new_logo.svg" style="width: 200px;"></td>
                   <td>{{contributor.maker}} {{contributor.model}}</td>
+                    <td>{{products.citrus_com_count}}</td>
                   <td><span id="citrus">{{products.price_citrus}}</span> грн <a href="{{ contributor.link_citrus }}"><button class="btn btn-success">Купити</button></a></td>
                 </tr>
                 <tr>
                   <td><img src="https://becover.com.ua/upload/iblock/b3a/b3ab547b7eb5aa952e3841ff5547c7fe.jpg" style="width: 150px;"></td>
                   <td>{{contributor.maker}} {{contributor.model}}</td>
+                    <td>{{products.allo_com_count}}</td>
                   <td><span id="allo">{{products.price_allo}}</span> грн <a href="{{ contributor.link_allo }}"><button class="btn btn-success">Купити</button></a></td>
                 </tr>
                 <tr>
                   <td><img src="https://stylus.ua/images/header_logo.png" style="width: 200px;"></td>
                   <td>{{contributor.maker}} {{contributor.model}}</td>
+                    <td>{{products.stylus_com_count}}</td>
                   <td><span id="stylus">{{products.price_stylus}}</span> грн <a href="{{ contributor.link_stylus }}"><button class="btn btn-success">Купити</button></a></td>
                 </tr>
               </tbody>
@@ -118,7 +125,7 @@
               <table class="table">
   <thead>
     <tr>
-      <th scope="col">Модель:</th>
+      <th scope="col">Model:</th>
       <th scope="col">{{products.category}}</th>
     </tr>
   </thead>

@@ -82,3 +82,18 @@ class Products(models.Model):
         prices = [self.price_itbox, self.price_rozetka, self.price_citrus, self.price_allo, self.price_stylus]
         return max(prices)
 
+    def best_price(self):
+        com = [self.itbox_com_count, self.rozetka_com_count, self.citrus_com_count, self.allo_com_count,
+               self.stylus_com_count]
+        prices = [self.price_itbox * com[0], self.price_rozetka * com[1], self.price_citrus * com[2],
+                  self.price_allo * com[3], self.price_stylus * com[4]]
+        count = 0
+        for i in range(len(prices)):
+            if prices[i] == 0:
+                del com[i - count]
+                count = count + 1
+        price = (sum(prices) / sum(com))
+        round(price, 0)
+        print(price)
+        return price
+
