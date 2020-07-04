@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import prod_card, product_page, filtered, search
+from .views import prod_card, product_page, filtered, search, ProdView
 from .models import *
 
 urlpatterns = [
@@ -9,4 +9,5 @@ urlpatterns = [
     path('search', search, name='search'),
     path('filtered/', filtered, name='filtered'),
     path('products/<product_slug>', product_page, name='products'),
+    path('api/', ProdView.as_view()),
 ]

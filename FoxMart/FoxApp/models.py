@@ -66,8 +66,8 @@ class Products(models.Model):
     allo_com_count = models.IntegerField(blank=True)
     stylus_com_count = models.IntegerField(blank=True)
 
-    def __int__(self):
-        return self.model
+    def __str__(self):
+        return str(self.model)
 
     def get_absolute_url(self):
         return reverse('products', kwargs={'product_slug': self.model})

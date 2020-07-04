@@ -3,6 +3,10 @@ from django.http import HttpResponse, JsonResponse
 from .models import Contributor, Products, Category
 from .models import Category as CategoryModel
 from django.db.models import F, Q
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import ProductSerializer
+
 from django.db.models import Avg, Count, Max, Min
 # Create your views here.
 
@@ -129,5 +133,11 @@ def search(request):
         'Cat': cat,
     }
     return render(request, "search.html", context)
+
+class ProdView(APIView):
+    def get(self, request):
+        products = Products.objects.all()
+        serializer = ProductSerializer(products, many=True)
+        return Response({'Products': serializer.data})
 
 
