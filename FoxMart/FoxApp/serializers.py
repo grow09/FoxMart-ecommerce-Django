@@ -1,30 +1,19 @@
 from rest_framework import serializers
 
+from .models import Products, Contributor
 
-class ProductSerializer(serializers.Serializer):
-    category = serializers.CharField()
-    model = serializers.CharField()
-    cpu = serializers.CharField()
-    cpu_serial = serializers.CharField()
-    speed = serializers.FloatField()
-    videocard = serializers.CharField()
-    ram_type = serializers.CharField()
-    ram = serializers.IntegerField()
-    hd_type = serializers.CharField()
-    hd = serializers.IntegerField()
-    diagonal = serializers.FloatField()
-    main_cam = serializers.IntegerField()
-    back_cam = serializers.CharField()
-    front_cam = serializers.CharField()
-    color = serializers.CharField()
-    os = serializers.CharField()
-    price_itbox = serializers.IntegerField()
-    price_rozetka = serializers.IntegerField()
-    price_citrus = serializers.IntegerField()
-    price_allo = serializers.IntegerField()
-    price_stylus = serializers.IntegerField()
-    itbox_com_count = serializers.IntegerField()
-    rozetka_com_count = serializers.IntegerField()
-    citrus_com_count = serializers.IntegerField()
-    allo_com_count = serializers.IntegerField()
-    stylus_com_count = serializers.IntegerField()
+
+class Metaa(serializers.ModelSerializer):
+
+    class Meta:
+        model = Contributor
+        fields = ("__all__")
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    category = serializers.SlugRelatedField(slug_field="name", read_only=True)
+    model = serializers.SlugRelatedField(slug_field="model", read_only=True)
+
+    class Meta:
+        model = Products
+        exclude = ("cpu_serial", "id")
