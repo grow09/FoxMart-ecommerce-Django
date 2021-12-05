@@ -1,19 +1,18 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.contrib.auth import authenticate, login
 
 # MODELS
-from .models import Contributor, Products, Category
+from django.urls import reverse_lazy
+
+from .models import Contributor, Products
+from users.models import CustomUser
 from .models import Category as CategoryModel
-from django.db.models import F, Q
+from django.db.models import Q
 
 # REST
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import ProductSerializer, Metaa
-from rest_framework.generics import get_object_or_404
-
-from django.db.models import Avg, Count, Max, Min
-
 
 
 def index(request):
@@ -127,6 +126,7 @@ def filtered(request):
     }
     return render(request, "prod-card.html", context)
 
+
 def search(request):
     contributor = Contributor.objects.filter(model__icontains=request.GET.get("search"))
     cat = request.GET.get("search")
@@ -138,6 +138,7 @@ def search(request):
         'Cat': cat,
     }
     return render(request, "search.html", context)
+
 
 class ProdView(APIView):
     def get(self, request, pk):
@@ -154,3 +155,28 @@ class ProdViewSimple(APIView):
         serializer = Metaa(products,  many=True)
         return Response({'Products': serializer.data})
 
+def user(request):
+
+    username = request.POST['username']
+    password = request.POST['password']
+    print(username,password)
+    user = authenticate(request, email=username, password=password)
+    if user is not None:
+        print('1')
+        login(user)
+        return reverse_lazy('index')
+    else:
+        pass
+
+
+def login(request):
+    context = {
+        'User': user,
+    }
+    # print(request.POST['username'])
+    return render(request, "login.html", context)
+
+
+def register(request):
+
+    return render(request, "register.html")
